@@ -23,6 +23,16 @@ the options are as follows
     - `xml`
     - `json`
     - `sql`
-- silent_error
-    - true
-    - false/null
+- error
+    - `all`
+    - `strict`
+    - `lax`
+    - `silent`
+
+
+example `.arrlangc`
+
+```txt
+output=xml
+error=all
+```
