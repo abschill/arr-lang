@@ -4,7 +4,7 @@ int main(int argc, char*argv[]) {
     char* input_file;
     char c;
     if(argc == 1) {
-        input_file = "data.arr";
+        input_file = "example0.arr";
     }
     else {
         if(argc == 2)
