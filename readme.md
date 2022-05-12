@@ -76,4 +76,26 @@ grocery_list$=()
 food_groups=i(grocery_list)(['fruit', 'grains', 'vegtables'])
 ```
 
-What we do here is use the `i` directive, short for `index` and what this does is say "the first item in the grocery_list collection is a list of fruits, second is grains, third is vegtables". At the moment we have nothing in our grocery list, so nothing is indexed, but it will automatically cascade for us if we add items into it.
+What we do here is use the `i` directive, short for `index` and what this does is say "the first item in the grocery_list collection is a list of fruits, second is grains, third is vegtables". At the moment we have nothing in our grocery list, so nothing is indexed, but it will automatically cascade for us if we add items into it. In other words, we can set up each index to be a list itself, keyed by the `i` directive. 
+
+
+### Step 4: insert static or dynamic data to the list
+
+```arr
+grocery_list=(['apples', 'bananas'], ['bread'], ['brussels-sprouts', 'corn'])
+food_groups=i(grocery_list)(['fruit', 'grains', 'vegtables'])
+```
+
+so now this could be rendered into JSON as 
+
+```json
+{
+    "grocery_list": {
+        "food_groups": {
+            "fruit": ["apples", "bananas"],
+            "grains": ["bread"],
+            "vegtables": ["brussels-sprouts", "corn"]
+        }
+    }
+}
+```
