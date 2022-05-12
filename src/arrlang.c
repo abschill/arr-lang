@@ -1,8 +1,12 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+char _cache[] = {};
 
 void handle_inline(char c, int pos, int ln) {
     // print char, line&position 
     // todo: actually parse lol
+    strcat(_cache, &c);
     printf("Character: %c\n", c);
     printf("Line: %d & Position: %d\n", ln, pos);
 }
@@ -34,12 +38,15 @@ int main(int argc, char*argv[]) {
             printf("\n");   
         }
         else {
+            
             handle_inline(c, file_pos, line_no);
         }
         // get next char in stream
         c = fgetc(content);
     }
     printf("\n");
+    printf("The File:\n");
+    printf("%s", _cache);
     // close stream
     fclose(content);
     return 0;
