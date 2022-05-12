@@ -3,12 +3,15 @@
 #include <string.h>
 char _cache[] = {};
 
-void handle_inline(char c, int pos, int ln) {
+void append_char(char c, int pos, int ln) {
+    char last_two[2] = {_cache[pos-1], c};
     // print char, line&position 
     // todo: actually parse lol
     strcat(_cache, &c);
     printf("Character: %c\n", c);
     printf("Line: %d & Position: %d\n", ln, pos);
+    // -1 pos for last char + this char
+    printf("Last 2: %s\n", last_two);
 }
 
 int main(int argc, char*argv[]) {
@@ -39,7 +42,7 @@ int main(int argc, char*argv[]) {
         }
         else {
             
-            handle_inline(c, file_pos, line_no);
+            append_char(c, file_pos, line_no);
         }
         // get next char in stream
         c = fgetc(content);
