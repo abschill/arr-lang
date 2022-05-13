@@ -64,10 +64,10 @@ This syntax above is essentially the same as doing this:
 ```arr
 food_groups=(['fruit', 'grains', 'vegtables'])
 ```
+
 You'll notice that if you are using the array as a static value, it will not require a $ because the expression is already in list format and will not need to be transposed during parsing.
 
-What () is essentially doing is evaluating an expression, and [] is interpreted as a static group of collection items. So when the parser sees that there is nothing to evaluate, it just performs a no-op and continues along. 
-
+What () is essentially doing is evaluating an expression, and [] is interpreted as a static group of collection items. So when the parser sees that there is nothing to evaluate, it just performs a no-op and continues along.
 
 ### Step 3: index the food groups to the grocery_list
 
@@ -76,17 +76,16 @@ grocery_list$=()
 food_groups=i(grocery_list)(['fruit', 'grains', 'vegtables'])
 ```
 
-What we do here is use the `i` directive, short for `index` and what this does is say "the first item in the grocery_list collection is a list of fruits, second is grains, third is vegtables". At the moment we have nothing in our grocery list, so nothing is indexed, but it will automatically cascade for us if we add items into it. In other words, we can set up each index to be a list itself, keyed by the `i` directive. 
-
+What we do here is use the `i` directive, short for `index` and what this does is say "the first item in the grocery_list collection is a list of fruits, second is grains, third is vegtables". At the moment we have nothing in our grocery list, so nothing is indexed, but it will automatically cascade for us if we add items into it. In other words, we can set up each index to be a list itself, keyed by the `i` directive.
 
 ### Step 4: insert static or dynamic data to the list
 
 ```arr
-grocery_list=(['apples', 'bananas'], ['bread'], ['brussels-sprouts', 'corn'])
+grocery_list$=(['apples', 'bananas'], ['bread'], ['brussels-sprouts', 'corn'])
 food_groups=i(grocery_list)(['fruit', 'grains', 'vegtables'])
 ```
 
-so now this could be rendered into JSON as 
+so now this could be rendered into JSON as:
 
 ```json
 {
@@ -94,6 +93,48 @@ so now this could be rendered into JSON as
         "food_groups": {
             "fruit": ["apples", "bananas"],
             "grains": ["bread"],
+            "vegtables": ["brussels-sprouts", "corn"]
+        }
+    }
+}
+```
+
+### Variadic Index Signature
+
+By default, the `i` function will act as a variadic enumeration of n length, so every n items of the input will follow the same format.
+
+```arr
+grocery_list$=(['apples', 'bananas'], ['bread'], ['brussels-sprouts', 'corn'], 'grapes')
+food_groups=i(grocery_list)(['fruit', 'grains', 'vegtables'])
+```
+
+you'll notice we're able to pass a value rather than an array and it will still be interpreted as an item for the "fruits" key of food groups.
+
+```json
+{
+    "grocery_list": {
+        "food_groups": {
+            "fruit": ["apples", "bananas", "grapes"],
+            "grains": ["bread"],
+            "vegtables": ["brussels-sprouts", "corn"]
+        }
+    }
+}
+```
+
+we can also tell the compiler to ignore indexes to only pass to a desired index.
+
+```arr
+grocery_list$=(['apples', 'bananas'], ['bread'], ['brussels-sprouts', 'corn'], !, 'rice')
+food_groups=i(grocery_list)(['fruit', 'grains', 'vegtables'])
+```
+
+```json
+{
+    "grocery_list": {
+        "food_groups": {
+            "fruit": ["apples", "bananas"],
+            "grains": ["bread", "rice"],
             "vegtables": ["brussels-sprouts", "corn"]
         }
     }
