@@ -3,19 +3,10 @@
 #include "color.h"
 
 char _cache[] = {};
-typedef void (*cb)(void);
-
-void style(cb _cb, char* msg) {
-    (*_cb)();
-    printf("%s", msg);
-    reset();
-}
 
 void print_cache() {
     printf("\n");
-    yellow();
-    printf("cache:\n");
-    reset();
+    style(*yellow, "cache:\n");
     printf("%s", _cache);
     printf("\n");
 }

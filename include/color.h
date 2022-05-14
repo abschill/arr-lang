@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+typedef void (*cb)(void);
+
 void reset() {
     printf("\033[0;37m");
 }
@@ -26,4 +28,10 @@ void purple() {
 
 void cyan() {
     printf("\033[0;36m");
+}
+
+void style(cb _cb, char* msg) {
+    (*_cb)();
+    printf("%s", msg);
+    reset();
 }
