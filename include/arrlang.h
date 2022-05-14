@@ -4,6 +4,18 @@
 
 char _cache[] = {};
 
+char C_OPEN_SCOPE = "$";
+char C_ASSIGN_TAG = "=";
+int D_SIZE = 4;
+char* D_TOKENS[D_SIZE] = {C_OPEN_SCOPE, C_ASSIGN_TAG};
+
+void check_tokens(char* acc, int i_size) {
+    printf("%s\n", acc);
+    for(int i=0; i <= i_size; i++) {
+        printf("%d\n", i);
+    }
+}
+
 void print_cache() {
     printf("\n");
     style(*yellow, "cache:\n");
@@ -13,8 +25,6 @@ void print_cache() {
 
 void append_char(char c, int pos, int ln) {
     char last_two[2] = {_cache[pos-1], c};
-    // print char, line&position
-    // todo: actually parse lol
     strcat(_cache, &c);
     style(*purple, "Character: ");
     printf("%c\n", c);
@@ -25,4 +35,5 @@ void append_char(char c, int pos, int ln) {
     // -1 pos for last char + this char
     printf("Last 2: %s\n\n", last_two);
     print_cache();
+    check_tokens(_cache, pos);
 }
