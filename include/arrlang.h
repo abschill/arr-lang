@@ -4,10 +4,9 @@
 
 char _cache[] = {};
 
-char C_OPEN_SCOPE = "$";
-char C_ASSIGN_TAG = "=";
-int D_SIZE = 4;
-char* D_TOKENS[D_SIZE] = {C_OPEN_SCOPE, C_ASSIGN_TAG};
+char token_map[4][2] = {
+    '$', '='
+};
 
 void check_tokens(char* acc, int i_size) {
     printf("%s\n", acc);
