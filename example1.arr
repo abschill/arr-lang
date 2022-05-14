@@ -9,5 +9,3 @@ food_groups$=i(foods):('nuts', 'fruits')
 
 ~~the line being down here instead of above would still work the same bc of the way the syntax will ultimately be hoisted when compiled.
 ~~foods$=(['peanuts', 'cashews'], ['apples', 'grapes'])
-
-

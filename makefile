@@ -1,3 +1,3 @@
 # create build dir inside target
 build:
-	gcc src/arrlang.c
+	gcc include/arrlang.c -o arrlang
