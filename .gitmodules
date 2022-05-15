@@ -1,0 +1,3 @@
+[submodule "pstyle"]
+	path = pstyle
+	url = git@github.com:abschill/pstyle.git

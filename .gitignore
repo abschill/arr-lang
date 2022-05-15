@@ -2,3 +2,10 @@
 *.out
 build/**/*
 arrlang
+CMakeFiles
+cmake_install.cmake
+CMakeCache.*
+.vscode/*.log
+arrl
+Makefile
+makefile
