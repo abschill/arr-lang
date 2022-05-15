@@ -1,6 +1,7 @@
+#pragma once
 #include <stdlib.h>
 #include <string.h>
-#include "color.h"
+#include "colors.h"
 
 char _cache[] = {};
 
@@ -9,30 +10,33 @@ char token_map[4][2] = {
 };
 
 void check_tokens(char* acc, int i_size) {
-    printf("%s\n", acc);
     for(int i=0; i <= i_size; i++) {
-        printf("%d\n", i);
+        //printf("%d\n", i);
     }
 }
 
 void print_cache() {
     printf("\n");
-    style(*yellow, "cache:\n");
+    printf("%s%s", yellow.text, "cache:\n");
     printf("%s", _cache);
+    printf("%s", COLOR_RESET);
     printf("\n");
 }
 
 void append_char(char c, int pos, int ln) {
     char last_two[2] = {_cache[pos-1], c};
     strcat(_cache, &c);
-    style(*purple, "Character: ");
+    printf("%s%s", purple.text, "Character: ");
+    printf("%s", COLOR_RESET);
     printf("%c\n", c);
-    style(*yellow, "Line: ");
+    printf("%s%s", yellow.text, "Line: ");
+    printf("%s", COLOR_RESET);
     printf("%d\n", ln);
-    style(*yellow, "Position: ");
+    printf("%s%s", yellow.text, "Position: ");
+    printf("%s", COLOR_RESET);
     printf("%d\n", pos);
     // -1 pos for last char + this char
-    printf("Last 2: %s\n\n", last_two);
+    printf("%sLast 2:%s %s\n\n", purple.underline, COLOR_RESET, last_two);
     print_cache();
     check_tokens(_cache, pos);
 }

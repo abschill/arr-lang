@@ -9,3 +9,4 @@ CMakeCache.*
 arrl
 Makefile
 makefile
+/*.h

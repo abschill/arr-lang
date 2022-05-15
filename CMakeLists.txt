@@ -1,7 +1,12 @@
-cmake_minimum_required(VERSION 2.6.0)
+cmake_minimum_required(VERSION 3.10)
+set(project_name arrl)
 
-# here we specify that the project is C language only, so the default
-# C compiler on the system will be used
-project(arrl C)
-add_subdirectory(pstyle)
-add_executable(arrl include/arrlang.c)
+project(${project_name} VERSION 1.0)
+
+add_executable(${project_name} include/arrlang.c)
+set_target_properties(${project_name} PROPERTIES LINKER_LANGUAGE C)
+
+target_include_directories(${project_name} PRIVATE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/pstyle/lib>
+  $<INSTALL_INTERFACE:pstyle/lib>  # <prefix>/include/mylib
+)
