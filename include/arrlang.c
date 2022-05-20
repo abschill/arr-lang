@@ -1,20 +1,9 @@
 #include "logger.h"
 
-int main(int argc, char*argv[]) {
-    int file_pos = 0;
-    int line_no = 0;
-    char* input_file;
-    char c;
 
-    // if no input arg then just run the test file for now
-    if(argc == 1) {
-        input_file = "example0.arr";
-    }
-    else {
-        if(argc >= 2)
-            input_file = argv[1];
-    }
-    FILE* content = fopen(input_file, "r");
+void parse_file(char* s, int file_pos, int line_no) {
+    char c;
+    FILE* content = fopen(s, "r");
     // get file by each char as a stream
     c = fgetc(content);
     while(c != EOF) {
@@ -31,5 +20,17 @@ int main(int argc, char*argv[]) {
     }
     // close stream
     fclose(content);
+}
+
+int main(int argc, char*argv[]) {
+    // if no input arg then just run the test file for now
+    if(argc <= 1) {
+        fprintf(stderr, "%sarrlang%s: No Input File. exiting\n", red.text, COLOR_RESET);
+        exit(1);
+    }
+    char* input_file = argv[1];
+    int file_pos = 0;
+    int line_no = 0;
+    parse_file(input_file, file_pos, line_no);
     return 0;
 }
